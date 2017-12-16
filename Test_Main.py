@@ -10,3 +10,4 @@ edges = cv2.Canny(img,100,200)
 print(img.size)
 print(edges.size)
 
+cv2.
