@@ -1,4 +1,5 @@
 from tkinter import *
+import backend
 
 
 class Window(object):
@@ -25,9 +26,14 @@ class Window(object):
         self.b1 = Button(textvariable=self.b1_text, command=self.start_pressed)
         self.b1.grid(row=1, column=0)
 
+        self.start_backend()
+
     def start_pressed(self):
         if self.b1_text.get() == "Start":
             self.b1_text.set("Stop")
+
+            self.vc.open_camera(self.vc,0)
+            backend.video_loop(self.vc)
         else:
             self.b1_text.set("Start")
 
@@ -38,7 +44,17 @@ class Window(object):
     def choose_Cam(self, number):
         self.cam = number
 
+    def start_backend(self):
+        self.vc = backend.VideoCapture
+
+
+    def __del__(self):
+        self.vc.cleanup()
+
+
+
 
 root = Tk()
 gui = Window(root)
 root.mainloop()
+

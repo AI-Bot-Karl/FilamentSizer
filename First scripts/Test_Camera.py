@@ -32,7 +32,7 @@ while (True):
     plt.subplot(143), plt.imshow(g, cmap='Greens'), plt.title('Green')
     plt.subplot(144), plt.imshow(b, cmap='Blues'), plt.title('Blue')
     plt.show()
-    plt.pause(0.05)
+    #plt.pause(0.05)
 
     #wait for pressing q to end program
     if cv2.waitKey(1) & 0xFF == ord('q'):
