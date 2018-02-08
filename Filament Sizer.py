@@ -1,7 +1,7 @@
-from frontend import GraficalUserInterface
+from frontend import Window
 
 
 
 
-GUI=GraficalUserInterface
+
 
