@@ -29,12 +29,12 @@ class VideoCapture:
     def __del__(self):
         self.cleanup()
 
-def video_loop(vidcap):
-    while (True):
-        vidcap.get_frame(vidcap)
-        vidcap.show_frame(vidcap)
-        if (cv2.waitKey(2) >= 0):  # If the user presses any key, exit the loop
-            break
+# def video_loop(vidcap):
+#     while (True):
+#         vidcap.get_frame(vidcap)
+#         vidcap.show_frame(vidcap)
+#         if (cv2.waitKey(2) >= 0):  # If the user presses any key, exit the loop
+#             break
 
 
 # vc = VideoCapture()
