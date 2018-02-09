@@ -1,5 +1,6 @@
 import cv2
 import sys
+from PIL import Image
 
 
 class VideoCapture:
@@ -11,13 +12,19 @@ class VideoCapture:
         self.cam_id = cam_id
         self.device = cv2.VideoCapture(self.cam_id)
 
+    def close_camera(self):
+        self.device.release()
+
     def get_frame(self):
         ret, frame = self.device.read()
         if ret == False:
             print(sys.stderr, "Error capturing from video device.")
             return None
         self.frame = frame
-        return frame
+        frame = cv2.flip(frame, 1)
+        cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+
+        return Image.fromarray(cv2image)
 
     def show_frame(self):
         cv2.imshow("Camera"+self.cam_id.__str__(),self.frame)

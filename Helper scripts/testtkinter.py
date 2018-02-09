@@ -2,6 +2,7 @@ import tkinter as tk
 import cv2
 from PIL import Image, ImageTk
 
+
 class CamView():
     def __init__(self, parent):
         self.parent = parent
@@ -22,23 +23,22 @@ class CamView():
         self.parent.test_frame = None
         self.window.destroy()
 
-root = tk.Tk()
-root.bind('<Escape>', lambda e: root.quit())
+
 
 class Main(tk.Frame):
-    def __init__(self, parent):
-
+    def __init__(self, parent=None):
+        frame = tk.Frame.__init__(self, parent)
         self.lmain = tk.Label(parent)
         self.lmain.pack()
 
         self.test_frame = None
-        frame = tk.Frame.__init__(self,parent)
+
         a = tk.Label(text='hello!').pack()
         b = tk.Button(frame, text='open', command=self.load_window)
         b.pack()
 
         width, height = 800, 600
-        self.cap = cv2.VideoCapture(0)
+        self.cap = cv2.VideoCapture()
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
 
@@ -57,5 +57,11 @@ class Main(tk.Frame):
         if self.test_frame == None:
             self.test_frame = CamView(self)
 
-control = Main(root)
-root.mainloop()
+# root = tk.Tk()
+# root.bind('<Escape>', lambda e: root.quit())
+# control = Main(root)
+# root.mainloop()
+
+if __name__ == '__main__':
+    app = Main()
+    app.mainloop()
