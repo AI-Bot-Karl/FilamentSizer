@@ -32,21 +32,16 @@ class MainWindow(tk.Frame):
         self.b1 = tk.Button(self.master, textvariable=self.b1_text, command=self.start_pressed)
         self.b1.grid(row=1, column=0)
 
-
-        # b = tk.Button(frame, text='open', command=self.load_window)
-        # b.pack()
-
-        width, height = 800, 600
         self.vidcap=backend.VideoCapture()
 
-
-
+        self.do_stuff()
 
 
     def do_stuff(self):
 
-        self.img = self.vidcap.get_frame()
+
         if self.test_frame != None:
+            self.img = self.vidcap.get_frame()
             self.test_frame.show_frame()
         self.lmain.after(10, self.do_stuff)
 
@@ -58,7 +53,6 @@ class MainWindow(tk.Frame):
         if self.b1_text.get() == "Start":
             self.b1_text.set("Stop")
             self.vidcap.open_camera(self.cam)
-            self.do_stuff()
             self.load_window()
 
         else:
@@ -83,9 +77,12 @@ class CamView():
         self.show_frame()
 
     def show_frame(self):
-        imgtk = ImageTk.PhotoImage(image=self.parent.img)
-        self.lmain2.imgtk = imgtk
-        self.lmain2.configure(image=imgtk)
+        try:
+            imgtk = ImageTk.PhotoImage(image=self.parent.img)
+            self.lmain2.imgtk = imgtk
+            self.lmain2.configure(image=imgtk)
+        except:
+            pass
 
     def close(self):
         self.parent.test_frame = None

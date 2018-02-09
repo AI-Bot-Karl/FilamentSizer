@@ -52,11 +52,7 @@ class MainWindow(Frame):
             self.b1_text.set("Stop")
 
             self.cap.open_camera(self.cap, 0)
-
             self.load_window()
-
-            # self.vc.open_camera(self.vc,0)
-            # backend.video_loop(self.vc)
         else:
             self.b1_text.set("Start")
             self.cap.close_camera()
