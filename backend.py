@@ -1,7 +1,7 @@
 import cv2
 import sys
 from PIL import Image
-
+import glob
 
 class VideoCapture:
 
@@ -30,27 +30,49 @@ class VideoCapture:
         cv2.imshow("Camera"+self.cam_id.__str__(),self.frame)
 
     def cleanup(self):
-        self.device.release()
-        cv2.destroyAllWindows
+        try:
+            self.device.release()
+            cv2.destroyAllWindows
+        except:
+            pass
 
     def __del__(self):
         self.cleanup()
 
-# def video_loop(vidcap):
-#     while (True):
-#         vidcap.get_frame(vidcap)
-#         vidcap.show_frame(vidcap)
-#         if (cv2.waitKey(2) >= 0):  # If the user presses any key, exit the loop
-#             break
 
 
-# vc = VideoCapture()
-# vc.open_camera(0)
-# while(True):
-#     vc.get_frame()
-#     vc.show_frame()
-#     if (cv2.waitKey(2) >= 0):  # If the user presses any key, exit the loop
-#         break
-# vc.cleanup()
+class Detector:
+
+    def __init__(self):
+        self.find_scripts()
 
 
+    def find_scripts(self):
+        self.scripts=glob.glob('Detector Scripts/*.py')
+        self.scriptiterator =glob.iglob('Detector Scripts/*.py')
+
+    def run_scripts(self):
+        pass
+
+
+    def __del__(self):
+        pass
+
+
+
+class Datahandler:
+
+    def __init__(self):
+        pass
+
+    def saveto(self):
+        pass
+
+    def startsaving(self):
+        pass
+
+    def stopsaving(self):
+        pass
+
+    def __del__(self):
+        pass
